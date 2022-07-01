@@ -16,8 +16,9 @@ public interface RetrofitApiService {
     @GET("posts")
     Call<List<Message>> getMessagesUserId(@Query("userId") int userId);
 
-    @GET("pokemon")
-    Call<List<Message>> getMessageName(@Query("name") String name);
+    @GET("ability/?limit=20&offset=20")
+    Call<Message> getMessageName();
 
-
+    @GET("pokemon/{name}")
+    Call<List<Message>> getPokemon(@Query("name") String name);
 }

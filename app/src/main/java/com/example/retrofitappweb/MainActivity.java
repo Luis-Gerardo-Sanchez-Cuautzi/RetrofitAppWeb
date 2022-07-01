@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
         initView();
         iniValues();
 
-        getUser("bulbasaur");
+        getUser();
     }
 
     private void initView(){
@@ -43,16 +43,16 @@ public class MainActivity extends Activity {
     }
 
 
-    private void  getUser(String name){
-        apiService.getMessageName(name).enqueue(new Callback<List<Message>>() {
+    private void  getUser(){
+        apiService.getMessageName().enqueue(new Callback<Message>() {
             @Override
-            public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
-                List<Message> user = response.body();
-                mTextView.setText(user.toString());
+            public void onResponse(Call<Message> call, Response<Message> response) {
+                Message resp = response.body();
+                mTextView.setText(resp.toString());
             }
 
             @Override
-            public void onFailure(Call<List<Message>> call, Throwable t) {
+            public void onFailure(Call<Message> call, Throwable t) {
                 mTextView.setText(t.getMessage());
             }
         });
